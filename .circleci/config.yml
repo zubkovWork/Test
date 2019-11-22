@@ -1,6 +1,11 @@
-version: 2
+version: 2.1
 jobs:
   build:
+    parameters:
+      region:
+        type: enum
+        enum: ["EU", "US"]
+        default: "US"
     docker:
       - image: debian:stretch
 
@@ -9,7 +14,7 @@ jobs:
 
       - run:
           name: Greeting
-          command: echo Hello, world.
+          command: echo Hello, << parameters.region >>.
 
       - run:
           name: Print the Current Time
