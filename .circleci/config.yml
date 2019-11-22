@@ -5,7 +5,6 @@ jobs:
       region:
         type: enum
         enum: ["EU", "US"]
-        default: "US"
     docker:
       - image: debian:stretch
 
