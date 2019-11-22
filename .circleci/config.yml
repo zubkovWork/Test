@@ -1,8 +1,16 @@
-version: 2.1
+version: 2
 jobs:
-  myjob:
+  build:
     docker:
-      - image: "circleci/node:9.6.1"
+      - image: debian:stretch
+
     steps:
-      - sayhello:
-          to: "Lev"
+      - checkout
+
+      - run:
+          name: Greeting
+          command: echo Hello, world.
+
+      - run:
+          name: Print the Current Time
+          command: date
