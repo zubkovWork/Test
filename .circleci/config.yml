@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Print the Current Time
           command: date
-workflow:
+workflows:
   version: 2
   build-and-deploy:
     jobs:
