@@ -26,4 +26,9 @@ workflows:
     jobs:
       - build:
           type: approval
+          region: "EU"
+      - build:
+          type: approval
+          region: "US"
+
 
