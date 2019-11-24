@@ -25,10 +25,10 @@ workflows:
   build-and-deploy:
     jobs:
       - build:
-          type: approval
+          name: "EU"
           region: "EU"
       - build:
-          type: approval
+          name: "US" 
           region: "US"
 
 
