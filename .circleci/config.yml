@@ -1,38 +1,42 @@
-version: 2.1
-jobs:
-  build:
-    parameters:
-      region:
-        type: enum
-        enum: 
-          - "EU"
-          - "US"
+defaults: &defaults
+  parameters:
+    region:
+      type: enum
+      enum: 
+        - "EU"
+        - "US"
     docker:
-      - image: debian:stretch
+    - image: debian:stretch
 
     steps:
-      - checkout
+    - checkout
 
-      - run:
-          name: Greeting
-          command: echo Hello, << parameters.region >>.
+    - run:
+        name: Greeting
+        command: echo Hello, << parameters.region >>.
 
-      - run:
-          name: Print the Current Time
-          command: date
+    - run:
+        name: Print the Current Time
+        command: date
+
+
+version: 2.1
+jobs:
+  build_EU:
+    <<: *defaults
+  build_US:
+    <<: *defaults
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build:
-          name: "BuildEU"
+      - build_EU:
           region: "EU"
-      - build:
-          name: "BuildUS" 
+      - build_US:
           type: approval
           requires:
-            - "BuildEU"
+            - "build_EU"
           region: "US"
 
 
