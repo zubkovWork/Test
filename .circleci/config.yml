@@ -6,18 +6,18 @@ defaults: &defaults
         - "EU"
         - "US"
     docker:
-    - image: debian:stretch
+      - image: debian:stretch
 
     steps:
-    - checkout
+      - checkout
 
-    - run:
-        name: Greeting
-        command: echo Hello, << parameters.region >>.
+      - run:
+          name: Greeting
+          command: echo Hello, << parameters.region >>.
 
-    - run:
-        name: Print the Current Time
-        command: date
+      - run:
+          name: Print the Current Time
+          command: date
 
 
 version: 2.1
