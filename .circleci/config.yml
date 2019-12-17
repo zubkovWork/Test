@@ -26,11 +26,12 @@ workflows:
     jobs:
       - build:
           name: "Build EU"
-          type: approval
           region: "EU"
       - build:
           name: "Build US" 
           type: approval
+          requires:
+            - "Build EU"
           region: "US"
 
 
