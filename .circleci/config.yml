@@ -1,4 +1,4 @@
-commads:
+commands:
   deploy:
     parameters:
       region:
