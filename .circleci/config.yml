@@ -32,13 +32,13 @@ workflows:
     jobs:
       - build_EU:
           region: "EU"
-      - build_US:
-          requires:
-            - "build_EU"
-          region: "US"
       - hold: 
           type: approval
           requires:
-            - build_US
+            - build_EU
+      - build_US:
+          requires:
+            - "hold"
+          region: "US"
 
 
