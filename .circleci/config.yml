@@ -43,6 +43,7 @@ workflows:
             - "Build EU"
 
       - build:
+          name: "Build US"        
           requires:
             - "hold-US"
           region: "US"
