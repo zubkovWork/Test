@@ -36,7 +36,7 @@ workflows:
       - build-US:
           type: approval
           requires:
-            - "build-EU"
+            - build-EU
           region: "US"
 
 
