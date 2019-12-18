@@ -22,21 +22,21 @@ defaults: &defaults
 
 version: 2.1
 jobs:
-  build_EU:
+  build-EU:
     <<: *defaults
-  build_US:
+  build-US:
     <<: *defaults
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build_EU:
+      - build-EU:
           region: "EU"
-      - build_US:
+      - build-US:
           type: approval
           requires:
-            - "build_EU"
+            - "build-EU"
           region: "US"
 
 
