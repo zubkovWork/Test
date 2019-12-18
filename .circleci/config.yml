@@ -26,7 +26,8 @@ jobs:
   build-EU:
     executor: my-executor
     steps:
-      - deploy
+      - deploy:
+          region: "EU"
 
 
 workflows:
