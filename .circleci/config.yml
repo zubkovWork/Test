@@ -1,39 +1,45 @@
+defaults: &defaults
+  parameters:
+    region:
+      type: enum
+      enum: 
+        - "EU"
+        - "US"
+  docker:
+    - image: debian:stretch
+
+  steps:
+    - checkout
+
+    - run:
+        name: Greeting
+        command: echo Hello, << parameters.region >>.
+
+    - run:
+        name: Print the Current Time
+        command: date
+
+
 version: 2.1
-
-executors:
-  my-executor:
-    docker:
-      - image: debian:stretch
-
-commands:
-  deploy:
-    parameters:
-      region:
-        type: enum
-        enum: 
-          - "EU"
-          - "US"
-    steps:
-      - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, << parameters.region >>.
-      - run:
-          name: Print the Current Time
-          command: date
-
 jobs:
-  build-EU:
-    executor: my-executor
-    steps:
-      - deploy:
-          region: "EU"
-
+  build_EU:
+    <<: *defaults
+  build_US:
+    <<: *defaults
 
 workflows:
+  version: 2
   build-and-deploy:
     jobs:
-      - build-EU:
+      - build_EU:
           region: "EU"
+      - build_US:
+          requires:
+            - "build_EU"
+          region: "US"
+      - hold: 
+        type: approval
+          requires:
+            - build_US
 
 
