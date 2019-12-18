@@ -24,10 +24,10 @@ version: 2.1
 jobs:
   build-EU:
     steps:
-      run: deploy
+      - deploy
   build-US:
     steps:
-      run: deploy
+      - deploy
 
 workflows:
   build-and-deploy:
