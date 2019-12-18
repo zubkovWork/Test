@@ -1,3 +1,5 @@
+version: 2.1
+
 commands:
   deploy:
     parameters:
@@ -6,9 +8,6 @@ commands:
         enum: 
           - "EU"
           - "US"
-    docker:
-      - image: debian:stretch
-
     steps:
       - checkout
       - run:
@@ -18,14 +17,15 @@ commands:
           name: Print the Current Time
           command: date
 
-
-
-version: 2.1
 jobs:
   build-EU:
+    docker:
+      - image: debian:stretch
     steps:
       - deploy
   build-US:
+    docker:
+      - image: debian:stretch
     steps:
       - deploy
 
