@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Test
-          command: echo Test OK! .
+          command: echo Test OK!
 
   deploy:
     parameters:
@@ -18,14 +18,14 @@ jobs:
           - "US"
           - "RU"
           - "EN"
-      docker:
-        - image: debian:stretch
+    docker:
+      - image: debian:stretch
 
-      steps:
-        - checkout
-        - run:
-            name: Greeting
-            command: echo Hello, << parameters.region >>.
+    steps:
+      - checkout
+      - run:
+          name: Greeting
+          command: echo Hello, << parameters.region >>.
 
 workflows:
   build-and-deploy:
