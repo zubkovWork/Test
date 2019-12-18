@@ -1,5 +1,10 @@
 version: 2.1
 
+executors:
+  my-executor:
+    docker:
+      - image: debian:stretch
+
 commands:
   deploy:
     parameters:
@@ -19,25 +24,15 @@ commands:
 
 jobs:
   build-EU:
-    docker:
-      - image: debian:stretch
+    executor: my-executor
     steps:
       - deploy
-  build-US:
-    docker:
-      - image: debian:stretch
-    steps:
-      - deploy
+
 
 workflows:
   build-and-deploy:
     jobs:
       - build-EU:
           region: "EU"
-      - build-US:
-          type: approval
-          requires:
-            - build-EU
-          region: "US"
 
 
