@@ -28,7 +28,6 @@ jobs:
     <<: *defaults
 
 workflows:
-  version: 2
   build-and-deploy:
     jobs:
       - build_EU:
@@ -38,7 +37,7 @@ workflows:
             - "build_EU"
           region: "US"
       - hold: 
-        type: approval
+          type: approval
           requires:
             - build_US
 
