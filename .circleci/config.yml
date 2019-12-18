@@ -31,7 +31,7 @@ workflows:
   build-and-deploy:
     jobs:
       - test
-      - build:
+      - deploy:
           name: "Build EU"
           region: "EU"
           requires:
@@ -42,7 +42,7 @@ workflows:
           requires:
             - "Build EU"
 
-      - build:
+      - deploy:
           name: "Build US"        
           requires:
             - "hold-US"
@@ -53,7 +53,7 @@ workflows:
           requires:
             - "Build US"
 
-      - build:
+      - deploy:
           requires:
             - "hold-RU"
           region: "RU"
